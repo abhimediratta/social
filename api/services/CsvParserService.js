@@ -1,5 +1,6 @@
 
 var filePath = "/Users/abhimediratta/Downloads/sachin.csv",
+	cityFile = "/Users/abhimediratta/MilkyWay/city_db.csv"
 	csv = require("fast-csv");
 
 
@@ -58,6 +59,36 @@ module.exports = {
 				sails.log.debug("CsvParserService", careers);
 			}).catch(function (err) {
 				sails.log.error("CsvParserService", err);
+			})
+		})
+	},
+
+	parseCityCsv: function () {
+		var records = [],
+			country = ["India", "Australia", "New Zealand"];
+
+		csv.fromPath(cityFile, { headers: true, trim: true})
+		.on("data", function (data) {
+			//console.log(data);
+			if (country.indexOf(data.country_name) > -1) {
+				var city = {
+					country: data.country_name,
+					name: data.city_name
+				};
+
+				console.log(city);
+				records.push(city);	
+			};
+			
+		})
+		.on("end", function () {
+			console.log(records.length);
+			City.create(records)
+			.then(function (all) {
+				console.log("done");
+			})
+			.catch(function (error) {
+				console.log("error");
 			})
 		})
 	}

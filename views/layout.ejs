@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>Sachin stats</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,13 +28,17 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
-    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    
   </head>
 
-  <body>
+  <body ng-app="app" ng-controller="appCtrl">
     <%- body %>
 
 
@@ -68,6 +72,26 @@
     
 
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="/bower_components/Chart.js/Chart.min.js"></script>
     <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    
+    
+    <script src='/custom_components/app.js'></script>
+    
+    <!-- Controllers -->
+    <script src='/custom_components/controllers/appCtrl.js'></script>
+    <script src='/custom_components/controllers/questionCtrl.js'></script>
+    <script src='/custom_components/controllers/homeCtrl.js'></script>
+
+    <!-- Factories -->
+    <script src='/custom_components/factories/AppFactory.js'></script>
+    <script src='/custom_components/factories/CareerFactory.js'></script>
   </body>
 </html>

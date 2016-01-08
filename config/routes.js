@@ -34,7 +34,15 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  'get /api/v1/getOverallStats': 'CareerController.getOverallStats',
+  'get /api/v1/getYearlyData': 'CareerController.getYearlyData',
+  'get /api/v1/getStatsByMatchResult': 'CareerController.getStatsByMatchResult',
+  'get /api/v1/getBasicStatsAgainstAustralia': 'CareerController.getBasicStatsAgainstAustralia',
+  'get /api/v1/getDetailedStatsAgainstAustralia': 'CareerController.getDetailedStatsAgainstAustralia',
+  'get /api/v1/getStatsByMatchesInAustralia': 'CareerController.getStatsByMatchesInAustralia',
+  'get /api/v1/getStatsForMatchesOutside': 'CareerController.getStatsForMatchesOutside',
 
   /***************************************************************************
   *                                                                          *

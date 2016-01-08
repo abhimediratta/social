@@ -14,17 +14,36 @@
  * or any other Grunt tasks you like.)
  */
 
+ $color-primary: rgba(63, 81, 181, 0.53);
+ $grey: rgba(206, 208, 214, 0.53);
 
+.md-button {
+	line-height: 20px;
+}
 
-// For example:
-//
-// @import 'variables/colors.less';
-// @import 'mixins/foo.less';
-// @import 'mixins/bar.less';
-// @import 'mixins/baz.less';
-//
-// @import 'styleguide.less';
-// @import 'pages/login.less';
-// @import 'pages/signup.less';
-//
-// etc.
+.layout-column {
+	margin-top: 20px;
+}
+
+.graph-card {
+	background: $grey;
+}
+
+.batting-stats {
+	background: $color-primary;
+	h2 {
+		color: white;
+	}
+}
+
+.card-icn {
+    height: 25px;
+    width: 25px;
+    padding-top: 18px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+}
+
+.md-headline {
+	line-height: 20px;
+}

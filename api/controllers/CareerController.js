@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	gerOverallStats: function (req, res) {
+	getOverallStats: function (req, res) {
 		Career.getOverallStats()
 		.then(function (result) {
 			sails.log.debug("[CareerController.gerOverallStats] result", result);

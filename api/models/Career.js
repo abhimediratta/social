@@ -66,15 +66,14 @@ module.exports = {
 			type: "integer"
 		},
 
-		getOverallStats: getOverallStats,
-		getYearlyData: getYearlyData,
-		getStatsByMatchResult: getStatsByMatchResult,
-		getBasicStatsAgainstAustralia: getBasicStatsAgainstAustralia,
-		getDetailedStatsAgainstAustralia: getDetailedStatsAgainstAustralia,
-		getStatsByMatchesInAustralia: getStatsByMatchesInAustralia,
-		getStatsForMatchesOutside: getStatsForMatchesOutside
-
-	}
+	},
+	getOverallStats: getOverallStats,
+	getYearlyData: getYearlyData,
+	getStatsByMatchResult: getStatsByMatchResult,
+	getBasicStatsAgainstAustralia: getBasicStatsAgainstAustralia,
+	getDetailedStatsAgainstAustralia: getDetailedStatsAgainstAustralia,
+	getStatsByMatchesInAustralia: getStatsByMatchesInAustralia,
+	getStatsForMatchesOutside: getStatsForMatchesOutside,
 };
 
 function getOverallStats () {
@@ -84,7 +83,7 @@ function getOverallStats () {
     				+ " batting_score "
     				+ " FROM career "
     				+ " ) "
-					+ " SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score), round(avg(batting_score),2) "
+					+ " SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score) as total_runs, round(avg(batting_score),2) as batting_average "
 					+ " FROM stats;";
 
 	return new Promise(function (resolve, reject){
@@ -125,7 +124,7 @@ function getYearlyData () {
 
 
 function getStatsByMatchResult () {
-	var myQuery = " select match_result,json_agg(career.batting_score),count(*),round(avg(batting_score),2) as average "
+	var myQuery = " select match_result,json_agg(career.batting_score) as runs_scored,count(*) as total_matches,round(avg(batting_score),2) as batting_average,sum(career.batting_score) as total_runs "
 				+ " from career "
 				+ " group by career.match_result;"
 
@@ -164,7 +163,7 @@ function getBasicStatsAgainstAustralia () {
 }
 
 function getDetailedStatsAgainstAustralia () {
-	var myQuery = " select match_result,json_agg(career.batting_score),count(*) as total_matches,round(avg(batting_score),2) as batting_average, sum(career.batting_score) "
+	var myQuery = " select match_result,json_agg(career.batting_score) as runs_scored,count(*) as total_matches,round(avg(batting_score),2) as batting_average, sum(career.batting_score) as total_runs "
 				+ " from career "
 				+ " where career.opposition = 'Australia' "
 				+ " group by career.match_result;"

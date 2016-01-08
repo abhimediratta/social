@@ -5,9 +5,9 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-module.exports = {
+var Promise = require("bluebird-extra");
 
-	migrate: 'alter',
+module.exports = {
 
 	attributes: {
 		batting_score: {

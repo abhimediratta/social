@@ -25,8 +25,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/question');
 });
 
+app.config(["$locationProvider", function($locationProvider) {
+	$locationProvider.html5Mode(true);
+}]);
+
 app.filter('capitalize', function() {
     return function(input) {
       return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 });
+

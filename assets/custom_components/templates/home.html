@@ -1,61 +1,39 @@
 <div layout="column" class="zero">
 	<h4 class="md-subhead">{{ message }}</h4>
+	<!-- Overall Stats start -->
 	<div layout="column" class="batting-stats" layout-padding>
 		<div layout="row">
 			<img layout-align="center center" class="card-icn" src="/images/bat.png">
 			<h2 class="md-headline">Career Batting Statistics</h2>
 		</div>
 		<div layout="row" flex="33">
-			<md-card>
+			<md-card ng-repeat="(key, value) in overAllStats">
 				<md-card-header layout-align="start center">
-	      			<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
-					<md-card-header-text >
-						<span class="md-display-2">{{ overAllStats.century }}</span>
-						<span class="md-subhead">centuries</span>
-					</md-card-header-text>
-				</md-card-header>
-			</md-card>
-
-			<md-card>
-				<md-card-header layout-align="start center">
-					<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
 					<md-card-header-text layout-align="center center">
-						<span class="md-display-2">{{ overAllStats.half_century }}</span>
-						<span class="md-subhead">half centuries</span>
-					</md-card-header-text>
-				</md-card-header>
-			</md-card>
-
-			<md-card>
-				<md-card-header layout-align="start center">
-					<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
-					<md-card-header-text layout-align="center center">
-						<span class="md-display-2">{{ overAllStats.total_runs }}</span>
-						<span class="md-subhead">Total runs</span>
-					</md-card-header-text>
-				</md-card-header>
-			</md-card>
-
-			<md-card>
-				<md-card-header layout-align="start center">
-					<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
-					<md-card-header-text layout-align="center center">
-						<span class="md-display-2">{{ overAllStats.batting_average }}</span>
-						<span class="md-subhead">Batting Average</span>
+						<span class="md-display-2">{{ value }}</span>
+						<span class="md-subhead">{{ key | capitalize }}</span>
 					</md-card-header-text>
 				</md-card-header>
 			</md-card>
 		</div>
-		
 	</div>
+	<!-- Overall Stats end -->
+
+	<!-- Yearly data start -->
 	<div layout="column" layout-padding class="graph-card">
 		<div layout="row">
 			<h3 class="md-subhead">Batting average over the years</h3>
 		</div>
-		<div layout="row">
-			<canvas style="height:420px;" id="yearly-data" class="chart chart-line" chart-data="averageYearlyData.data" chart-labels="averageYearlyData.labels" chart-legend="true" chart-series="averageYearlyData.series" >
-		</div>
+		<canvas id="avg-yearly-data" class="chart chart-line" chart-data="averageYearlyData.data" chart-labels="averageYearlyData.labels" chart-legend="true" chart-series="averageYearlyData.series" >
 	</div>
+
+	<div layout="column" layout-padding class="graph-card">
+		<div layout="row">
+			<h3 class="md-subhead">Runs scored over the years</h3>
+		</div>
+		<canvas id="runs-yearly-data" class="chart chart-bar" chart-data="runsYearlyData.data" chart-labels="runsYearlyData.labels" chart-series="runsYearlyData.series"></canvas>
+	</div>
+	<!-- Yearly data end -->
 
 	<div layout="column" class="batting-stats" layout-padding>
 		<h2 class="md-headline">Batting Statistics by Match Result</h2>
@@ -64,14 +42,55 @@
 				<md-card-header layout-align="start center">
 	      			<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
 					<md-card-header-text >
-						<span class="md-display-2">{{ result.match_result | capitalize}}</span>
-						<div layout="column" layout-align="start center">
-							<span>{{ result.batting_average }}</span>
-							<span class="md-subhead">Average</span>
+						<span class="md-display-2" layout="column" layout-align="start center">{{ result.match_result | capitalize}}</span>
+						<div layout="row">
+							<div layout="column" layout-margin layout-align="start center" ng-class="{'highlight': (result.batting_average > 40)}">
+								<span>{{ result.batting_average }}</span>
+								<span class="md-subhead">Average</span>
+							</div>
+							<div layout="column" layout-margin layout-align="start center">
+								<span>{{ result.total_runs }}</span>
+								<span class="md-subhead">Total runs</span>
+							</div>
 						</div>
-						<div layout="column" layout-align="start center">
-							<span>{{ result.total_runs }}</span>
-							<span class="md-subhead">Total runs</span>
+					</md-card-header-text>
+				</md-card-header>
+			</md-card>
+		</div>
+	</div>
+
+	<div layout="column" class="batting-stats" layout-padding>
+		<h2 class="md-headline">Batting Statistics Against Australia(one of the best teams in the last 2 decades)</h2>
+		<div layout="row" flex="33">
+			<md-card ng-repeat="(key,value) in statsAgainstAustralia">
+				<md-card-header layout-align="start center">
+	      			<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
+					<md-card-header-text layout-align="center center">
+						<span class="md-display-2">{{ value }}</span>
+						<span class="md-subhead">{{ key | capitalize }}</span>
+					</md-card-header-text>
+				</md-card-header>
+			</md-card>
+		</div>
+	</div>
+
+	<div layout="column" class="batting-stats" layout-padding>
+		<h2 class="md-headline">Batting Statistics of matches in Australia and New Zealand (Worst batting pitch)</h2>
+		<div layout="row" flex="33">
+			<md-card ng-repeat="result in statsInAustralia">
+				<md-card-header layout-align="start center">
+	      			<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
+					<md-card-header-text >
+						<span class="md-display-2" layout="column" layout-align="start center">{{ result.match_result | capitalize}}</span>
+						<div layout="row">
+							<div layout="column" layout-margin layout-align="start center" ng-class="{'highlight': (result.batting_average > 40)}">
+								<span>{{ result.batting_average }}</span>
+								<span class="md-subhead">Average</span>
+							</div>
+							<div layout="column" layout-margin layout-align="start center">
+								<span>{{ result.total_runs }}</span>
+								<span class="md-subhead">Total runs</span>
+							</div>
 						</div>
 					</md-card-header-text>
 				</md-card-header>

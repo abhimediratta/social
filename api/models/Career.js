@@ -83,7 +83,7 @@ function getOverallStats () {
     				+ " batting_score "
     				+ " FROM career "
     				+ " ) "
-					+ " SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score) as total_runs, round(avg(batting_score),2) as batting_average "
+					+ " SELECT SUM(century) centuries, SUM(half_century) \"Half centuries\", sum(batting_score) as \"Total runs\", round(avg(batting_score),2) as \"Batting average\", max(batting_score) as \"Highest score\" "
 					+ " FROM stats;";
 
 	return new Promise(function (resolve, reject){
@@ -147,7 +147,7 @@ function getBasicStatsAgainstAustralia () {
 	    		+ " batting_score "
 	    		+ " FROM career "
 	    		+ " where opposition = 'Australia' "
-	    		+ " ) SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score) as total_runs, round(avg(batting_score),2) as batting_average "
+	    		+ " ) SELECT SUM(century) as centuries, SUM(half_century) as \"Half centuries\", sum(batting_score) as \"Total runs\", round(avg(batting_score),2) as \"Batting average\" "
 				+ " FROM stats;"
 
 	return new Promise(function (resolve, reject){

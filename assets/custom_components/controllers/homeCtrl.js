@@ -12,7 +12,17 @@ app.controller('homeCtrl', [
 			series: ["Batting average"]
 		};
 
+		$scope.runsYearlyData = {
+			labels: [],
+			data: [],
+			series: ["Runs scored over the years"]
+		}
+
 		$scope.statsByMatchResult = [];
+
+		$scope.statsAgainstAustralia = {};
+
+		$scope.statsInAustralia = {};
 
 		if (AppFactory.getCheck()) {
 			$scope.message = "Well, let's see what the numbers have to say about it";
@@ -24,23 +34,33 @@ app.controller('homeCtrl', [
 			$scope.overAllStats = response;
 		});
 
-		CareerFactory.getYearlyData().then(function (response) {
-			handleYearlyData(response);
-		});
+		CareerFactory.getYearlyData().then(handleYearlyData);
 
 		CareerFactory.getStatsByMatchResult().then(function (response) {
 			$scope.statsByMatchResult = response;
 		});
 
+		CareerFactory.getBasicStatsAgainstAustralia().then(function (response) {
+			$scope.statsAgainstAustralia = response;
+		});
+
+		CareerFactory.getStatsByMatchesInAustralia().then(function (response) {
+			$scope.statsInAustralia = response;
+		});
+
 		function handleYearlyData (response) {
 			var labels = [],
-				data = [];
+				data = [],
+				runs = [];
 			for (var i = 0; i < response.length; i++) {
 				labels.push(response[i].match_year);
 				data.push(response[i].batting_average);
+				runs.push(response[i].total_runs);
 			};
 
 			$scope.averageYearlyData.labels = labels;
+			$scope.runsYearlyData.labels = labels;
+			$scope.runsYearlyData.data = [runs];
 			$scope.averageYearlyData.data = [data];
 		}
 

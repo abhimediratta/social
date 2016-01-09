@@ -16,6 +16,7 @@
 
  $color-primary: rgba(63, 81, 181, 0.53);
  $grey: rgba(206, 208, 214, 0.53);
+ $green: rgb(0, 167, 100);
 
 .md-button {
 	line-height: 20px;
@@ -46,4 +47,12 @@
 
 .md-headline {
 	line-height: 20px;
+}
+
+.highlight {
+	background: $green;
+	color: white;
+	.md-subhead {
+		color: white;
+	}
 }

@@ -15,7 +15,7 @@ with stats as (SELECT
     CASE WHEN batting_score >= 50 and batting_score < 100  THEN 1 ELSE 0 END  half_century,
     batting_score
     FROM career
-    ) SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score), round(avg(batting_score),2)
+    ) SELECT SUM(century) century, SUM(half_century) half_century, sum(batting_score), round(avg(batting_score),2), max(batting_score) as highest_score
 FROM stats
 
 --year on year data

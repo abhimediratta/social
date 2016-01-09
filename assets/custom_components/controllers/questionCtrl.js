@@ -7,7 +7,7 @@ app.controller('questionCtrl', [
 		$scope.handleAnswer = function (yes) {
 			AppFactory.setCheck(yes);
 
-			$location.path("stats");
+			$location.path("/home/stats");
 		}
 	}
 	]);

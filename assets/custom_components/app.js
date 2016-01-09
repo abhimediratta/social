@@ -11,18 +11,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 	.state('question', {
-		url: "/question",
+		url: "/home/question",
 		templateUrl: "/custom_components/templates/question.html",
 		controller: "questionCtrl"
 	})
 	.state('stats', {
-		url: "/stats",
+		url: "/home/stats",
 		templateUrl: "/custom_components/templates/home.html",
 		controller: "homeCtrl"
 	});
 	
 
-	$urlRouterProvider.otherwise('/question');
+	$urlRouterProvider.otherwise('/home/question');
 });
 
 app.config(["$locationProvider", function($locationProvider) {

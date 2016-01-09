@@ -35,6 +35,10 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+  
+  '/home/*': {
+    view: 'homepage'
+  },
 
   'get /api/v1/getOverallStats': 'CareerController.getOverallStats',
   'get /api/v1/getYearlyData': 'CareerController.getYearlyData',

@@ -9,7 +9,7 @@
 		<div layout="row" flex="33">
 			<md-card ng-repeat="(key, value) in overAllStats">
 				<md-card-header layout-align="start center">
-					<md-card-header-text layout-align="center center">
+					<md-card-header-text layout-align="center center" ng-class="{highlight: key == 'Highest score' || (key == 'Batting average')}">
 						<span class="md-display-2">{{ value }}</span>
 						<span class="md-subhead">{{ key | capitalize }}</span>
 					</md-card-header-text>
@@ -60,12 +60,12 @@
 	</div>
 
 	<div layout="column" class="batting-stats" layout-padding>
-		<h2 class="md-headline">Batting Statistics Against Australia(one of the best teams in the last 2 decades)</h2>
+		<h2 class="md-headline">Batting Statistics against Australia (one of the best teams in the last 2 decades)</h2>
 		<div layout="row" flex="33">
 			<md-card ng-repeat="(key,value) in statsAgainstAustralia">
 				<md-card-header layout-align="start center">
 	      			<!-- <img class="md-user-avatar card-icn" src="/images/bat.png"> -->
-					<md-card-header-text layout-align="center center">
+					<md-card-header-text layout-align="center center" ng-class="{highlight: key == 'Batting average'}">
 						<span class="md-display-2">{{ value }}</span>
 						<span class="md-subhead">{{ key | capitalize }}</span>
 					</md-card-header-text>
@@ -75,7 +75,7 @@
 	</div>
 
 	<div layout="column" class="batting-stats" layout-padding>
-		<h2 class="md-headline">Batting Statistics of matches in Australia and New Zealand (Worst batting pitch)</h2>
+		<h2 class="md-headline">Batting Statistics of matches in Australia and New Zealand (worst batting pitch)</h2>
 		<div layout="row" flex="33">
 			<md-card ng-repeat="result in statsInAustralia">
 				<md-card-header layout-align="start center">
